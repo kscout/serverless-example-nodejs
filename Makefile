@@ -1,4 +1,4 @@
-.PHONY: docker docker-run
+.PHONY: docker docker-run docker-build deploy
 
 DOCKER_TAG ?= kscout/serverless-example-nodejs:latest
 
@@ -13,3 +13,7 @@ docker-run:
 # push docker image
 docker-push:
 	docker push "${DOCKER_TAG}"
+
+# deploy service to k8s
+deploy:
+	kubectl apply --filename service.yaml
